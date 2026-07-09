@@ -1,0 +1,16 @@
+[
+  {
+    "id": "c277c53e-8cc2-4840-8d60-eef5e3079f44",
+    "username": "budi_traveler",
+    "email": "budi@email.com",
+    "passwordHash": "686009c1bba53cdca9584fbcfb35f08ca50929957a2eac70dc59d81eea0953be",
+    "createdAt": "2026-07-08T23:47:05.364Z"
+  },
+  {
+    "id": "b3d7b23f-3641-4b1d-8e61-dd71f348a3f5",
+    "username": "taarii",
+    "email": "tari@email.com",
+    "passwordHash": "baeec9565c635ec036b9250df0f244f641653b8c85288947f79fc18eca884b7d",
+    "createdAt": "2026-07-09T02:05:14.564Z"
+  }
+]
