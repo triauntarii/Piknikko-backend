@@ -68,6 +68,11 @@ function safeParseJSON(text: string): any {
 
 // --- ENDPOINTS ---
 
+// Root health check
+app.get('/', (req: Request, res: Response) => {
+    res.json({ message: "Piknik API Gateway is online and active! 🚀" });
+});
+
 // 1. Auth: Register
 app.post('/api/auth/register', (req: Request, res: Response) => {
     try {
