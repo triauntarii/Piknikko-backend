@@ -195,12 +195,12 @@ ${context || 'Tidak ada data wisata referensi tambahan.'}
 
 Aturan: Jawablah dengan natural, ramah, dan solutif. Jika informasi tidak ada di Data Wisata, jawablah berdasarkan pengetahuan umum namun tetap sampaikan dengan ramah bahwa tempat tersebut belum terintegrasi lengkap di Piknik.`;
 
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-flash-lite-latest" });
         const result = await model.generateContent(prompt);
         res.json({ response: result.response.text() });
-    } catch (error) {
-        console.error("Chat Error:", error);
-        res.status(500).json({ error: "Gagal generate jawaban AI" });
+    } catch (error: any) {
+        console.error("Chat Error:", error?.message ?? error);
+        res.status(500).json({ error: "Gagal generate jawaban AI", detail: error?.message });
     }
 });
 
@@ -238,15 +238,15 @@ Harus menghasilkan format JSON murni tanpa markdown formatting apa pun, dengan s
 }`;
 
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.5-flash",
+            model: "gemini-flash-lite-latest",
             generationConfig: { responseMimeType: "application/json" }
         });
         const result = await model.generateContent(prompt);
         const jsonResponse = safeParseJSON(result.response.text());
         res.json(jsonResponse);
-    } catch (error) {
-        console.error("Itinerary Error:", error);
-        res.status(500).json({ error: "Gagal membuat itinerary perjalanan" });
+    } catch (error: any) {
+        console.error("Itinerary Error:", error?.message ?? error);
+        res.status(500).json({ error: "Gagal membuat itinerary perjalanan", detail: error?.message });
     }
 });
 
@@ -274,15 +274,15 @@ Harus menghasilkan format JSON murni berupa array of objects dengan struktur ber
 ]`;
 
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.5-flash",
+            model: "gemini-flash-lite-latest",
             generationConfig: { responseMimeType: "application/json" }
         });
         const result = await model.generateContent(prompt);
         const jsonResponse = safeParseJSON(result.response.text());
         res.json(jsonResponse);
-    } catch (error) {
-        console.error("Recommendations Error:", error);
-        res.status(500).json({ error: "Gagal mengambil rekomendasi" });
+    } catch (error: any) {
+        console.error("Recommendations Error:", error?.message ?? error);
+        res.status(500).json({ error: "Gagal mengambil rekomendasi", detail: error?.message });
     }
 });
 
@@ -315,16 +315,16 @@ Jawab dalam format JSON murni dengan struktur objek berikut:
         };
 
         const model = genAI.getGenerativeModel({
-            model: "gemini-2.5-flash",
+            model: "gemini-flash-lite-latest",
             generationConfig: { responseMimeType: "application/json" }
         });
         
         const result = await model.generateContent([prompt, imagePart]);
         const jsonResponse = safeParseJSON(result.response.text());
         res.json(jsonResponse);
-    } catch (error) {
-        console.error("Ticket Verification Error:", error);
-        res.status(500).json({ error: "Gagal melakukan verifikasi tiket" });
+    } catch (error: any) {
+        console.error("Ticket Verification Error:", error?.message ?? error);
+        res.status(500).json({ error: "Gagal melakukan verifikasi tiket", detail: error?.message });
     }
 });
 
